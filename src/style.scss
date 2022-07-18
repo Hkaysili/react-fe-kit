@@ -1,0 +1,33 @@
+.header{
+    span{
+        margin-right: 5px;
+        &:last-child{
+            font-weight: bolder;
+        }
+    }
+}
+
+// #main 
+#main{
+    .infoBtn{
+        background-color: blue;
+        color: #fff;
+        font-size: 1rem;
+        border: 1px solid #ddd; 
+        padding: 4px 8px;
+        border-radius: 4px;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        -ms-border-radius: 4px;
+        -o-border-radius: 4px;
+        margin-left: 10px; 
+    }
+}
+
+*{
+    button, a{
+       &:hover{
+            cursor: pointer;
+        }
+    }
+}

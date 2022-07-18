@@ -1,48 +1,56 @@
-import { useEffect } from 'react';
-import logo from './logo.svg'; 
-import Test from './Test'
+import { createElement } from 'react';
+import './style.scss';   
 
-/* Styled Component */
-import { Title } from './StyledComponents';
+function App() { 
+  
+  const todos = ['Todo1', 'Todo2', 'Todo3'];
+  const person = {
+    name: "Harun Veli",
+    surname: "KAYSILI",
+    title:"Senior",
+    job: "Frontend Developer"
+  }
+ 
+  {/*  ******* JSX yerine kulllanım  --- createElement() ************ */}
+  {/*
+  const name = createElement('h1', null, 'Harun Veli KAYSILI')
+  const ul = createElement('ul', null, todos.map(todo => createElement('li',null,todo)))
+  const button = createElement('button', { 
+    className:'infoBtn'
+  }, 'Buton texti')
 
-/* Bootstrap component*/
-import Bootstrap from './Bootstrap'; 
+  return createElement('div',{
+    className: 'test',
+    id:"main"
+  }, name, ul, button) 
+  */}
+  
 
-/* Tailwind component */
-import Tailwind from './Tailwind';
+  const infoAlert = () => {
+    alert('info!')
+  }
+  const Button = (props) => {
+    return <button>{props.text}</button>
+  }
 
-/* ModuleSass => modüler stillendirme işlemleri */
-import styles from './App.module.css';  
-
-
-
-function App() {
-  useEffect(()=>{
-    if(process.env.NODE_ENV === 'production'){
-      // analytic'i bilgilendir..
-    }
-  }, [])
   return (
-    <div className={styles.App}>
-       {/* StyledComponent Usage */}
-       <Title>{process.env.NODE_ENV}</Title>
-       <Title theme="darkRed">{process.env.NODE_ENV}</Title>
+     <div id="main" className='test'>
+      {/* ********  Örnek JS  kullanımı için { .... }  ************ */}
+       <h1 style={{color:'#fff', backgroundColor:'darkred', textAlign:'center', padding:'4px 0'}} tabIndex="3">
+        {`${person.name} ${person.surname} - ${person.title.toUpperCase()} ${person.job}`}
+       </h1>  
+       <ul> 
+         {todos.map((todo, index) => (
+           <li key={index}>{todo}</li>
+         ))}
+       </ul>
+       <label htmlFor='search' tabIndex="2">Arama</label>
+       <input type="text" id='search' tabIndex="1" />
 
-       <span>My Api URL : {process.env.REACT_APP_API_URL}</span>
-       {process.env.NODE_ENV === 'production' && (
-         <>
-          <img src={logo} alt="logo" /> 
-         </>
-       )}
-
-       <Test/>
-       
-       {/* Bootstrap Usage */}
-       <Bootstrap/>
-
-       {/* Tailwind Usage */}
-       <Tailwind/>
-    </div> 
+       <button onClick={()=>window.location.reload()}>Sayfayı Yenile</button>
+       <button onClick={() => infoAlert()} className="infoBtn">Info</button>
+       <Button text="Info"/>
+     </div> 
   ); 
 }
 
