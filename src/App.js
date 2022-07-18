@@ -1,55 +1,35 @@
-import { createElement } from 'react';
+import './tailwind.css';
 import './style.scss';   
+import Button from './components/Button';  
+import Tab from './components/Tab';
+import { useState } from 'react';
 
-function App() { 
-  
-  const todos = ['Todo1', 'Todo2', 'Todo3'];
-  const person = {
-    name: "Harun Veli",
-    surname: "KAYSILI",
-    title:"Senior",
-    job: "Frontend Developer"
-  }
- 
-  {/*  ******* JSX yerine kulllanım  --- createElement() ************ */}
-  {/*
-  const name = createElement('h1', null, 'Harun Veli KAYSILI')
-  const ul = createElement('ul', null, todos.map(todo => createElement('li',null,todo)))
-  const button = createElement('button', { 
-    className:'infoBtn'
-  }, 'Buton texti')
-
-  return createElement('div',{
-    className: 'test',
-    id:"main"
-  }, name, ul, button) 
-  */}
-  
-
-  const infoAlert = () => {
-    alert('info!')
-  }
-  const Button = (props) => {
-    return <button>{props.text}</button>
-  }
-
+function App() {   
+  const [activeTab, setActiveTab] = useState(1) 
   return (
      <div id="main" className='test'>
-      {/* ********  Örnek JS  kullanımı için { .... }  ************ */}
-       <h1 style={{color:'#fff', backgroundColor:'darkred', textAlign:'center', padding:'4px 0'}} tabIndex="3">
-        {`${person.name} ${person.surname} - ${person.title.toUpperCase()} ${person.job}`}
-       </h1>  
-       <ul> 
-         {todos.map((todo, index) => (
-           <li key={index}>{todo}</li>
-         ))}
-       </ul>
-       <label htmlFor='search' tabIndex="2">Arama</label>
-       <input type="text" id='search' tabIndex="1" />
+       {/* ***** Tab  -  component kullanımı  ******* */}
+       {/*-------------------------------------
+      <div style={{padding:"10px"}}>
+            <button onClick={()=>setActiveTab(2)}>
+              Aktif Tabı Değiştir
+            </button>
+            <Tab activeTab={activeTab} onChange={tabIndex => console.log('tabIndex değişti', tabIndex)}>
+              <Tab.Panel title="Profil">1.Tab</Tab.Panel>
+              <Tab.Panel title="Hakkında">2.Tab</Tab.Panel>
+              <Tab.Panel title="Ayarlar">3.Tab</Tab.Panel>
+            </Tab>
+        </div>
+       */}
 
-       <button onClick={()=>window.location.reload()}>Sayfayı Yenile</button>
-       <button onClick={() => infoAlert()} className="infoBtn">Info</button>
-       <Button text="Info"/>
+       
+       {/* ***** Button - component kullanımı  ******* */}
+       <div style={{padding:"5px"}}>
+          <Button text="Open"/>
+          <Button text="Success" variant="success"/>
+          <Button text="Warning" variant="warning"/>
+          <Button text="Error" variant="danger"/>
+       </div>
      </div> 
   ); 
 }
